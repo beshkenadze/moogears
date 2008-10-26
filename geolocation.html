@@ -3,11 +3,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>moo.Gears GeoLocation Demo</title>
+<style>
+#map_canvas img.load{
+	position: relative;
+	top:188px;
+	left:188px;
+}
+#map_canvas {
+	border: 1px solid gray;
+}
+</style>
 </head>
 <body>
 <div id="message_place"></div>
-<div id="map_canvas" style="width: 500px; height: 400px">
-<img src="load.gif" />
+<div id="map_canvas" style="width: 400px; height: 400px">
+<img class='load' src="load.gif" />
 </div>
 <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAqST4dCrRr3VUA2hQx-BamhRpHN8VuFduCFff_Y7yM76pWR-mlhQvW8f-HakRAJQlkI9aarcvW0nS1A"></script>
 <script src="mootools-1.2.1-core.js"></script>
