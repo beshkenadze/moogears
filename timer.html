@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>moo.Gears Timer Demo</title>
+
+</head>
+
+<body>
+<div>
+<p>Hello, from the past!</p>
+</div>
+<script src="mootools-1.2.1-core.js"></script>
+<script src="moo.gears.js"></script>
+<script>
+  window.addEvent('domready', function() {
+    var timer = new MooGears('beta.timer');
+	var timer2 = new MooGears('beta.timer');
+	if(timer.factory){
+		// If Gears install
+		timer.factory.setTimeout(function() { $$('div p').set('html','Hello, from the future! (call from timer)'); },1000);
+		timer2.factory.setTimeout(function() { $$('div p').set('html','Back to the future ! (call from timer2)'); },2000);
+	}
+  })
+</script>
+</body>
+</html>
+

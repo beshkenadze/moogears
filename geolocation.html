@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>moo.Gears GeoLocation Demo</title>
+</head>
+<body>
+<div id="message_place"></div>
+<div id="map_canvas" style="width: 500px; height: 400px">
+<img src="load.gif" />
+</div>
+<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAqST4dCrRr3VUA2hQx-BamhRpHN8VuFduCFff_Y7yM76pWR-mlhQvW8f-HakRAJQlkI9aarcvW0nS1A"></script>
+<script src="mootools-1.2.1-core.js"></script>
+<script src="moo.gears.js"></script>
+<script type="text/javascript">
+google.load("maps", "2");
+window.addEvent('domready', function() {
+    var geo = new MooGears('beta.geolocation');
+	if(geo.userPermission){
+		// If Gears install
+		    geo.factory.getCurrentPosition(function(position){
+		        var map;
+			    var geocoder;
+			    var address;
+			      map = new GMap2(document.getElementById("map_canvas"));
+			      map.setCenter(new GLatLng(position.latitude,position.longitude), 10);
+			      map.addControl(new GLargeMapControl);
+			      //GEvent.addListener(map, "click", getAddress);
+			      point = new GLatLng(position.latitude,position.longitude);
+		          marker = new GMarker(point);
+		          map.addOverlay(marker);
+			      geocoder = new GClientGeocoder();
+			      
+			      var address = position.gearsAddress.city + ', '
+                  + position.gearsAddress.region + ', '
+                  + position.gearsAddress.country + ' ('
+                  + position.latitude + ', '
+                  + position.longitude + ')';
+			    
+		       $('message_place').set('html','Вы нахожитесь: ' + address);
+		    }, function(positionError){
+		       $('message_place').html('Attempt to get location failed: ' + positionError.message);
+		    },{ enableHighAccuracy: true,gearsRequestAddress: true });
+	}
+});
+</script>
+</body>
+</html>

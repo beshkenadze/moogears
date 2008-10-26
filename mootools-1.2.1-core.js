@@ -1,0 +1,1 @@
+/home/akira/Projects/library/Mootools/mootools-1.2.1-core.js
