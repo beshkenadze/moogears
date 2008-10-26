@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>moo.Gears WorkerPool Demo</title>
+</head>
+<body>
+<div id="message_place"></div>
+<div id="map_canvas" style="width: 500px; height: 400px"></div>
+<script src="mootools-1.2.1-core.js"></script>
+<script src="moo.gears.js"></script>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	var workerPool = new MooGears('beta.workerpool');
+	if(workerPool.factory){
+		// If Gears install
+		workerPool.factory.onmessage = function(a, b, message) {
+	    	alert('Received message from worker ' + message.sender + ': \n' + message.body);
+		};
+		var childWorkerId = workerPool.factory.createWorkerFromUrl('worker.js');
+		workerPool.factory.sendMessage(["3..2..", 1, {helloWorld: "Hello world!"}], childWorkerId);
+	}
+})
+</script>
+</body>
+</html>
